@@ -32,6 +32,23 @@ printing.print();
 </script>
 
 <style>
+  
+  h1 {
+        font-size: 2.5em; /* Makes the header larger */
+        color: #333; /* Dark grey color for the text */
+        text-align: center; /* Centers the header */
+        padding: 10px 0; /* Adds space above and below the text */
+        margin-bottom: 20px; /* Adds space below the header */
+        border-bottom: 2px solid #e0e0e0; /* Adds a light grey line under the text */
+        background-color: #fff; /* White background for the header */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift the header off the page */
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 8px; /* Rounded corners for the background */
+    }
+
+
         address {
             margin-top: 20px;
             padding: 15px;
@@ -79,6 +96,149 @@ printing.print();
     .customer-info-table td[colspan="3"] {
         text-align: center; /* Centers text in cells that span multiple columns */
     }
+
+
+    .footer {
+    width: 100%;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 2px solid #444; /* adds a nice line above the footer */
+    background-color: #f9f9f9; /* light background for the footer */
+    color: #333; /* dark text color for readability */
+}
+
+.footer-table {
+    width: 100%;
+    border-collapse: collapse; /* ensures borders between cells are merged */
+    font-size: 16px; /* larger font size for better readability */
+}
+
+.footer-table th {
+    background-color: #4CAF50; /* green background for headers */
+    color: white; /* white text color */
+    font-weight: bold; /* makes text bold */
+    padding: 10px 15px; /* adds padding inside the header cells */
+    text-align: center; /* centers the text horizontally */
+}
+
+.footer-table td {
+    text-align: center; /* align text in the center of the cell */
+    padding: 8px 12px; /* vertical and horizontal padding inside cells */
+    border-top: 1px solid #ddd; /* adds a subtle line on top of each cell */
+}
+
+/* Optional: Add CSS for the signatures to indicate the signature lines */
+.footer-table td::after {
+    content: "";
+    display: block;
+    width: 60%; /* adjust width as necessary */
+    margin: 10px auto 0; /* centers the line horizontally, adds space on top */
+    border-bottom: 1px dashed #666; /* dashed line for signatures */
+}
+
+
+
+
+.widget-box {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        background: #ffffff;
+        border-radius: 5px;
+    }
+
+    .widget-title {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 5px 5px 0 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .widget-content {
+        padding: 20px;
+        background: #fafafa;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    .table-bordered {
+        border: 1px solid #ddd;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+        background-color: #f9f9f9;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table td, .table th {
+        padding: 8px;
+        line-height: 1.5;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+        text-align: center;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(0,0,0,.05);
+    }
+
+    .table-hover tbody tr:hover {
+        color: #212529;
+        background-color: rgba(0,0,0,.075);
+    }
+
+
+
+
+
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        font-size: 16px; /* Adjust font size as needed */
+    }
+    .table th {
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: bold;
+    }
+    .table tr:nth-child(even){background-color: #f9f9f9;}
+    .table tr:hover {background-color: #ddd;}
+
+    .table-responsive {
+        overflow-x: auto;
+        margin-top: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    /* Additional styling */
+    address {
+        margin-bottom: 20px;
+        font-style: normal;
+        line-height: 1.5;
+    }
+
+    .table td[colspan="3"] {
+        text-align: center; /* Center align the text if it spans more columns */
+    }
+
     </style>
 
 </head>
