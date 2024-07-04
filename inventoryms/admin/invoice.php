@@ -13,233 +13,204 @@ if (strlen($_SESSION['imsaid']==0)) {
 <head>
 <title>Inventory Management System|| Invoice</title>
 <?php include_once('includes/cs.php');?>
+
+
 <script type="text/javascript">
+function print1(strid) {
+    if (confirm("Do you want to print?")) {
+        var values = document.getElementById(strid).innerHTML;
+        var currentDate = new Date(); // Create a new date object to get the current date and time
+        var formattedDate = currentDate.toLocaleDateString('en-US', { // Format the date
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit'
+        });
 
-function print1(strid)
-{
-if(confirm("Do you want to print?"))
-{
-var values = document.getElementById(strid);
-var printing =
-window.open('','','left=0,top=0,width=550,height=400,toolbar=0,scrollbars=0,sta­?tus=0');
-printing.document.write(values.innerHTML);
-printing.document.close();
-printing.focus();
-printing.print();
+        var printWindow = window.open('left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
 
-}
+        printWindow.document.write('<html>');
+        printWindow.document.write('<style>');
+        // Embedding all your CSS styles directly here
+        printWindow.document.write(`
+           body { font-family: Arial, sans-serif; }
+          h1 { font-size: 2.5em; color: #333; text-align: center; padding: 10px 0; margin-bottom: 20px; border-bottom: 2px solid #e0e0e0; background-color: #fff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: fit-content; margin-left: auto; margin-right: auto; border-radius: 8px; }
+          address { margin-top: 20px; padding: 15px; background: #f5f5f5; border: 1px solid #ccc; color: #333; font-style: normal; line-height: 1.5; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-size: 16px; }
+          address strong { font-size: 18px; color: #000; display: block; margin-bottom: 8px; }
+          address br { margin-bottom: 5px; }
+          .customer-info-table, .footer-table, .table { width: 100%; border-collapse: collapse; }
+          .customer-info-table th, .customer-info-table td, .footer-table th, .footer-table td, .table th, .table td { padding: 8px; border: 1px solid #ccc; font-size: 16px; }
+          .customer-info-table th, .table th { background-color: #f2f2f2; color: #333; font-weight: bold; }
+          .customer-info-table tr:nth-child(odd) td, .table tr:nth-child(even) { background-color: #f9f9f9; }
+          .customer-info-table td[colspan="3"], .table td[colspan="3"] { text-align: center; }
+          .footer { margin-top: 30px; padding-top: 15px; border-top: 2px solid #444; background-color: #f9f9f9; color: #333; position: relative; }
+          .footer-table th { background-color: #4CAF50; color: white; font-weight: bold; padding: 10px 15px; text-align: center; }
+          .footer-table td { text-align: center; padding: 8px 12px; border-top: 1px solid #ddd; }
+          .footer-table td::after { content: ""; display: block; width: 60%; margin: 10px auto 0; border-bottom: 1px dashed #666; }
+          .widget-box { box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px; background: #ffffff; border-radius: 5px; }
+          .widget-title { background-color: #4CAF50; color: #fff; padding: 10px 15px; border-radius: 5px 5px 0 0; font-size: 16px; font-weight: bold; }
+          .widget-content { padding: 20px; background: #fafafa; }
+          .table-responsive { overflow-x: auto; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.15); }
+          .table-hover tbody tr:hover { color: #212529; background-color: rgba(0,0,0,.075); }
+          .date-time { position: absolute; bottom: 10px; right: 10px; font-size: 12px; } /* Style for date and time */
+        `); 
+        printWindow.document.write('</style>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(values);
+        printWindow.document.write('<div class="date-time">' + formattedDate + '</div>'); // Adding the date and time to the bottom right corner
+        printWindow.document.write('</body></html>');
+
+        printWindow.document.close();
+        //printWindow.focus();
+        setTimeout(function() { printWindow.print(); printWindow.close(); }, 1000);
+    }
 }
 </script>
 
+
+
+
 <style>
-  
-  h1 {
-        font-size: 2.5em; /* Makes the header larger */
-        color: #333; /* Dark grey color for the text */
-        text-align: center; /* Centers the header */
-        padding: 10px 0; /* Adds space above and below the text */
-        margin-bottom: 20px; /* Adds space below the header */
-        border-bottom: 2px solid #e0e0e0; /* Adds a light grey line under the text */
-        background-color: #fff; /* White background for the header */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift the header off the page */
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 8px; /* Rounded corners for the background */
+
+    /* Header styles with advanced gradient and subtle animation */
+    h1 {
+        font-size: 2.5em;
+        color: #333;
+        text-align: center;
+        padding: 20px;
+        margin: 30px auto;
+        background: linear-gradient(135deg, #ffffff 30%, #f1f1f1 100%);
+        border-bottom: 4px solid #e0e0e0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        width: 60%;
+        border-radius: 10px;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-
-        address {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f5f5f5; /* Light grey background */
-            border: 1px solid #ccc; /* Grey border */
-            color: #333; /* Dark text color for readability */
-            font-style: normal; /* Override default italics on address tag */
-            line-height: 1.5; /* More space between lines */
-            border-radius: 8px; /* Rounded corners for the address block */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-            font-size: 16px; /* Slightly larger text for easy reading */
-        }
-        address strong {
-            font-size: 18px; /* Slightly larger font size for the company name */
-            color: #000; /* Black color for emphasis */
-            display: block; /* Display on a new line */
-            margin-bottom: 8px; /* Space below the company name */
-        }
-        address br {
-            margin-bottom: 5px; /* Adds visual separation between lines */
-        }
-
-        .customer-info-table {
-        width: 100%;
-        border-collapse: collapse; /* Ensures that borders between cells are merged */
-        margin-bottom: 20px; /* Adds space below the table */
+    h1:hover {
+        transform: scale(1.05);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
     }
 
-    .customer-info-table th, .customer-info-table td {
-        border: 1px solid #ccc; /* Adds a light gray border around table cells */
-        padding: 8px; /* Adds space inside cells */
-        text-align: left; /* Aligns text to the left */
-        font-size: 16px; /* Sets a larger font size for better readability */
+    /* Enhanced address block with transitions for hover */
+    address {
+        margin: 20px auto;
+        padding: 20px;
+        background: #f5f5f5;
+        border: 1px solid #ccc;
+        color: #333;
+        font-style: normal;
+        line-height: 1.5;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        font-size: 16px;
+        width: 70%;
+        transition: all 0.4s ease-in-out;
     }
 
-    .customer-info-table th {
-        background-color: #f2f2f2; /* A light grey background for header cells */
-        color: #333; /* Dark grey text color for header cells */
+    address:hover {
+        border-color: #bdc3c7;
+        background: #e7e7e7;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     }
 
-    .customer-info-table tr:nth-child(odd) td {
-        background-color: #fafafa; /* A very light grey background for odd rows */
+    address strong {
+        font-size: 20px;
+        color: #2C3E50;
+        margin-bottom: 12px;
     }
 
-    .customer-info-table td[colspan="3"] {
-        text-align: center; /* Centers text in cells that span multiple columns */
+    /* Table styles with hover effects */
+    .customer-info-table, .footer-table, .table {
+        width: 85%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
+    .customer-info-table th, .customer-info-table td,
+    .footer-table th, .footer-table td,
+    .table th, .table td {
+        padding: 12px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        text-align: left;
+        transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    }
 
+    .customer-info-table th:hover, .table th:hover {
+        background-color: #e0e0e0;
+        color: #555;
+    }
+
+    /* Footer enhancements with animated gradient */
     .footer {
-    width: 100%;
-    margin-top: 30px;
-    padding-top: 15px;
-    border-top: 2px solid #444; /* adds a nice line above the footer */
-    background-color: #f9f9f9; /* light background for the footer */
-    color: #333; /* dark text color for readability */
-}
+        width: 100%;
+        margin-top: 30px;
+        padding: 20px 0;
+        border-top: 4px solid #444;
+        background: linear-gradient(to right, #f9f9f9, #ececec);
+        color: #333;
+        text-align: center;
+        transition: background-color 0.5s ease;
+    }
 
-.footer-table {
-    width: 100%;
-    border-collapse: collapse; /* ensures borders between cells are merged */
-    font-size: 16px; /* larger font size for better readability */
-}
+    .footer-table th {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px;
+        transition: background-color 0.3s ease;
+    }
 
-.footer-table th {
-    background-color: #4CAF50; /* green background for headers */
-    color: white; /* white text color */
-    font-weight: bold; /* makes text bold */
-    padding: 10px 15px; /* adds padding inside the header cells */
-    text-align: center; /* centers the text horizontally */
-}
+    .footer-table th:hover {
+        background-color: #369639;
+    }
 
-.footer-table td {
-    text-align: center; /* align text in the center of the cell */
-    padding: 8px 12px; /* vertical and horizontal padding inside cells */
-    border-top: 1px solid #ddd; /* adds a subtle line on top of each cell */
-}
+    .footer-table td {
+        text-align: center;
+        padding: 15px;
+        border-top: 1px solid #ddd;
+    }
 
-/* Optional: Add CSS for the signatures to indicate the signature lines */
-.footer-table td::after {
-    content: "";
-    display: block;
-    width: 60%; /* adjust width as necessary */
-    margin: 10px auto 0; /* centers the line horizontally, adds space on top */
-    border-bottom: 1px dashed #666; /* dashed line for signatures */
-}
+    /* Responsive tables */
+    .table-responsive {
+        overflow-x: auto;
+        margin-top: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
 
-
-
-
-.widget-box {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+    /* Widget enhancements */
+    .widget-box {
+        margin-bottom: 30px;
         background: #ffffff;
-        border-radius: 5px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
 
     .widget-title {
         background-color: #4CAF50;
         color: #fff;
-        padding: 10px 15px;
-        border-radius: 5px 5px 0 0;
-        font-size: 16px;
+        padding: 15px;
+        border-radius: 8px 8px 0 0;
+        font-size: 18px;
         font-weight: bold;
     }
 
     .widget-content {
         padding: 20px;
         background: #fafafa;
+        transition: background-color 0.3s ease;
     }
 
-    .table {
-        width: 100%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
+    .widget-content:hover {
+        background-color: #f0f0f0;
     }
-
-    .table-bordered {
-        border: 1px solid #ddd;
-    }
-
-    .table thead th {
-        vertical-align: bottom;
-        border-bottom: 2px solid #dee2e6;
-        background-color: #f9f9f9;
-        font-size: 14px;
-        font-weight: bold;
-        color: #333;
-        padding: 8px;
-        text-align: center;
-    }
-
-    .table td, .table th {
-        padding: 8px;
-        line-height: 1.5;
-        vertical-align: top;
-        border-top: 1px solid #dee2e6;
-        text-align: center;
-    }
-
-    .table-striped > tbody > tr:nth-of-type(odd) {
-        background-color: rgba(0,0,0,.05);
-    }
-
-    .table-hover tbody tr:hover {
-        color: #212529;
-        background-color: rgba(0,0,0,.075);
-    }
+</style>
 
 
 
-
-
-
-    .table {
-        width: 100%;
-        margin-bottom: 20px;
-        border-collapse: collapse;
-    }
-    .table th, .table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-        font-size: 16px; /* Adjust font size as needed */
-    }
-    .table th {
-        background-color: #f2f2f2;
-        color: #333;
-        font-weight: bold;
-    }
-    .table tr:nth-child(even){background-color: #f9f9f9;}
-    .table tr:hover {background-color: #ddd;}
-
-    .table-responsive {
-        overflow-x: auto;
-        margin-top: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    }
-
-    /* Additional styling */
-    address {
-        margin-bottom: 20px;
-        font-style: normal;
-        line-height: 1.5;
-    }
-
-    .table td[colspan="3"] {
-        text-align: center; /* Center align the text if it spans more columns */
-    }
-
-    </style>
 
 </head>
 <body>
